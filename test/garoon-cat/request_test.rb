@@ -1,9 +1,17 @@
 require 'test_helper'
+require 'faker'
 
 class GaroonCat::RequestTest < Minitest::Test
 
   def params
-    {action:'Test', username:'testuser', password:'testpassword'}
+    {
+      action:Faker::App.name,
+      username:Faker::Internet.user_name,
+      password:Faker::Internet.password,
+      locale:Faker::Address.country_code.downcase,
+      created_at:Time.now,
+      expires_at:Time.now,
+    }
   end
 
   def request

@@ -4,7 +4,7 @@ require 'time'
 module GaroonCat
   class Request
 
-    def initialize(action:, username:nil, password:nil, locale:'jp', created_at:Time.now, expires_at:Time.now)
+    def initialize(action:, username:, password:, locale:, created_at:, expires_at:)
       @action = action
       @username = username
       @password = password
