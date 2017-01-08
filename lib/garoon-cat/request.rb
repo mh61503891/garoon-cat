@@ -4,13 +4,13 @@ require 'time'
 module GaroonCat
   class Request
 
-    def initialize
-      @action = 'BaseGetApplicationStatus'
-      @username = ENV['USERNAME']
-      @password = ENV['PASSWORD']
-      @locale = 'jp'
-      @created_at = Time.now # '2010-08-12T14:45:00Z'
-      @expires_at = Time.now # '2037-08-12T14:45:00Z'
+    def initialize(action:, username:nil, password:nil, locale:'jp', created_at:Time.now, expires_at:Time.now)
+      @action = action
+      @username = username
+      @password = password
+      @locale = locale
+      @created_at = created_at
+      @expires_at = expires_at
     end
 
     def header_action
