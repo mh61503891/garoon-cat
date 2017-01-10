@@ -1,39 +1,45 @@
 # Garoon Cat
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/garoon/cat`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is a gem for Garoon API **under construction**.
 
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
+## Usage
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'garoon-cat'
+gem 'garoon-cat', git:'https://github.com/mh61503891/garoon-cat.git'
 ```
 
 And then execute:
 
-    $ bundle
+```bash
+bundle install
+```
 
-Or install it yourself as:
+Create sample.rb:
 
-    $ gem install garoon-cat
+```ruby
+require 'garoon-cat'
 
-## Usage
+params = {
+  endpoint:ENV['ENDPOINT'],
+  username:ENV['USERNAME'],
+  password:ENV['PASSWORD']
+}
 
-TODO: Write usage instructions here
+base = GaroonCat::Service.new(params.merge({prefix:'cbpapi', name:'base' }))
+p base.get_application_status()
+```
 
-## Development
+Run sample.rb:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```bash
+ENDPOINT=https://example.net/cgi-bin/cbgrn/grn.cgi USERNAME=username PASSWORD=password bundle exec ruby sample.rb
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Output:
 
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/garoon-cat. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
+> {"application"=>[{"code"=>"portal", "status"=>"active"}, {"code"=>"space", "status"=>"deactive"}, {"code"=>"link", "status"=>"active"}, {"code"=>"schedule", "status"=>"active"}, {"code"=>"message", "status"=>"deactive"}, {"code"=>"bulletin", "status"=>"active"}, {"code"=>"cabinet", "status"=>"active"}, {"code"=>"memo", "status"=>"deactive"}, {"code"=>"phonemessage", "status"=>"deactive"}, {"code"=>"timecard", "status"=>"deactive"}, {"code"=>"todo", "status"=>"active"}, {"code"=>"address", "status"=>"deactive"}, {"code"=>"mail", "status"=>"deactive"}, {"code"=>"workflow", "status"=>"active"}, {"code"=>"report", "status"=>"active"}, {"code"=>"cbwebsrv", "status"=>"deactive"}, {"code"=>"rss", "status"=>"deactive"}, {"code"=>"cbdnet", "status"=>"deactive"}, {"code"=>"presence", "status"=>"deactive"}, {"code"=>"star", "status"=>"deactive"}, {"code"=>"notification", "status"=>"deactive"}, {"code"=>"cellular", "status"=>"deactive"}, {"code"=>"kunai", "status"=>"active"}, {"code"=>"favour", "status"=>"deactive"}, {"code"=>"dezielink", "status"=>"deactive"}]}
 
 ## License
 
