@@ -4,13 +4,14 @@ require 'time'
 module GaroonCat
   class Request
 
-    def initialize(action:, username:, password:, locale:, created_at:, expires_at:)
+    def initialize(action:, username:, password:, locale:, created_at:, expires_at:, parameters:)
       @action = action
       @username = username
       @password = password
       @locale = locale
       @created_at = created_at
       @expires_at = expires_at
+      @parameters = parameters
     end
 
     def header_action
@@ -44,7 +45,17 @@ module GaroonCat
     end
 
     def body_action
-      parameters = REXML::Element.new('Parameters')
+      parameters = REXML::Element.new('parameters')
+      @parameters&.each do |key, value|
+        case value
+        when String
+          parameters.add_element(key.to_s).add_text(value.to_s)
+        when Array
+          value.each do |e|
+            parameters.add_element(key.to_s).add_text(e.to_s)
+          end
+        end
+      end
       action = REXML::Element.new(@action)
       action.add_element(parameters)
       action

@@ -11,6 +11,7 @@ class GaroonCat::RequestTest < Minitest::Test
       locale:Faker::Address.country_code.downcase,
       created_at:Time.now,
       expires_at:Time.now,
+      parameters:nil
     }
   end
 
