@@ -1,6 +1,7 @@
 # Garoon Cat
 
-This is a gem for Garoon API **under construction**.
+* This is a gem for Garoon API.
+* This gem is **under construction now**.
 
 ## Usage
 
