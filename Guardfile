@@ -41,8 +41,6 @@ guard :minitest do
   # watch(%r{^app/models/(.*)\.rb$})      { |m| "test/unit/#{m[1]}_test.rb" }
 end
 
-guard 'yard' do
-  watch(%r{app\/.+\.rb})
-  watch(%r{lib\/.+\.rb})
-  watch(%r{ext\/.+\.c})
+guard :yard do
+  watch(%r{^lib/(.*/)?([^/]+)\.rb$})
 end
