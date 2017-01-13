@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Masayuki Higashino']
   spec.email         = ['mh.on.web@gmail.com']
 
-  spec.summary       = %q{Garoon Cat}
-  spec.description   = %q{Garoon Cat}
+  spec.summary       = %q{Garoon Cat: A Ruby interface to the Garoon API.}
+  spec.description   = %q{Garoon Cat: A Ruby interface to the Garoon API.}
   spec.homepage      = 'https://github.com/mh61503891/garoon-cat'
   spec.license       = 'MIT'
 
