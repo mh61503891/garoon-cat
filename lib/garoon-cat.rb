@@ -1,7 +1,6 @@
 require 'garoon-cat/version'
 require 'garoon-cat/client'
 require 'garoon-cat/service'
-require 'garoon-cat/utils'
 require 'rexml/document'
 require 'active_support/core_ext/string/inflections'
 require 'uri'
