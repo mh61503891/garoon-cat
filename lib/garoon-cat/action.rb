@@ -4,6 +4,9 @@ require 'garoon-cat/response'
 
 class GaroonCat::Action
 
+  # @param service [GaroonCat::Service]
+  # @param key [Symbol]
+  # @return [GaroonCat::Action]
   def self.create(service:, key:)
     segments = {
       prefix:service.uri.path.split('/')[-3],
@@ -17,6 +20,8 @@ class GaroonCat::Action
     self.new(service:service, key:key)
   end
 
+  # @param segments [Hash<Symbol => String>]
+  # @return [String] the path for require
   def self.class_path(segments)
     path = %w(garoon-cat actions)
     path << segments[:prefix]
@@ -26,6 +31,8 @@ class GaroonCat::Action
   end
   private_class_method :class_path
 
+  # @param segments [Hash<Symbol => String>]
+  # @return [String] the class name
   def self.class_name(segments)
     name = %w(GaroonCat Actions)
     name << segments[:prefix].upcase
@@ -35,11 +42,15 @@ class GaroonCat::Action
   end
   private_class_method :class_name
 
+  # @param service [GaroonCat::Service]
+  # @param key [Symbol]
   def initialize(service:, key:)
     @service = service
     @key = key
   end
 
+  # @param *args [Object] arguments of this action
+  # @return [Object] return values of this action
   def execute(*args)
     request = GaroonCat::Request.new(default_params.merge({
     }))
@@ -49,6 +60,7 @@ class GaroonCat::Action
     return response.to_params
   end
 
+  # @return [Hash] the default parameters of this service and its actions
   def default_params
     {
       header: {
