@@ -3,3 +3,5 @@ require 'garoon-cat'
 require 'minitest/autorun'
 require 'minitest/assert_errors'
 require 'minitest/nyan_cat'
+require 'webmock/minitest'
+WebMock.disable!
