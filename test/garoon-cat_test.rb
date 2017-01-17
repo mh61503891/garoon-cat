@@ -40,4 +40,36 @@ class GaroonCat::Test < Minitest::Test
     }
   end
 
+  def organization_ids
+    @@org_versions ||= @@garoon.service(:base).get_organization_versions()['organization_item'].map{ |e| e['id'] }
+  end
+
+  def user_ids
+    @@user_versions ||= @@garoon.service(:base).get_user_versions()['user_item'].map{ |e| e['id'] }
+  end
+
+  def organizations
+    @@organizations ||= @@garoon.service(:base).get_organizations_by_id(organization_id:organization_ids)
+  end
+
+  def users
+    @@users ||= @@garoon.service(:base).get_users_by_id(user_id:organization_ids)
+  end
+
+  def test_organization_ids
+    assert_instance_of(Array, organization_ids)
+  end
+
+  def test_user_ids
+    assert_instance_of(Array, user_ids)
+  end
+
+  def test_organizations
+    assert_instance_of(Hash, organizations)
+  end
+
+  def test_users
+    assert_instance_of(Hash, users)
+  end
+
 end
