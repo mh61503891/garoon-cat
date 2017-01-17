@@ -54,20 +54,17 @@ class GaroonCat::Request
     target = @params.dig(:body, :parameters)
     case target
     when Hash
-      target.each do |key, value|
-        parameters.add_element(key.to_s).add_text(value.to_s)
+      target.each do |key, v1|
+        case v1
+        when String
+          parameters.add_element(key.to_s).add_text(v1.to_s)
+        when Array
+          v1.each do |v2|
+            parameters.add_element(key.to_s).add_text(v2.to_s)
+          end
+        end
       end
     end
-    # @params.dig(:body, :parameters)&.each do |key, value|
-    #   case value
-    #   when String
-    #     parameters.add_element(key.to_s).add_text(value.to_s)
-    #   when Array
-    #     value.each do |e|
-    #       parameters.add_element(key.to_s).add_text(e.to_s)
-    #     end
-    #   end
-    # end
     parameters
   end
 
