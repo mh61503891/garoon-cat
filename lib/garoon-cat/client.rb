@@ -5,7 +5,7 @@ class GaroonCat::Client
   attr_reader :username
   attr_reader :password
 
-  def initialize(username:, password:)
+  def initialize(username:nil, password:nil)
     @client = HTTPClient.new
     @username = username
     @password = password
