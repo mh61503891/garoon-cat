@@ -7,6 +7,12 @@
 Add this line to your application's Gemfile:
 
 ```ruby
+gem 'garoon-cat'
+```
+
+or
+
+```ruby
 gem 'garoon-cat', git:'https://github.com/mh61503891/garoon-cat.git'
 ```
 
