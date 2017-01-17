@@ -99,7 +99,7 @@ Gemfile
 dump.rb
 
 $ cat Gemfile
-gem 'garoon-cat', git:'https://github.com/mh61503891/garoon-cat.git'
+gem 'garoon-cat'
 
 $ bundle install
 Using concurrent-ruby 1.0.4
@@ -115,11 +115,11 @@ Using unf 0.1.4
 Using activesupport 5.0.1
 Using domain_name 0.5.20161129
 Using http-cookie 1.0.3
-Using garoon-cat 0.1.0 from https://github.com/mh61503891/garoon-cat.git (at master@5140f80)
+Using garoon-cat 0.1.0
 Bundle complete! 1 Gemfile dependency, 14 gems now installed.
 Use `bundle show [gemname]` to see where a bundled gem is installed.
 
-URI=https://example.net/cgi-bin/cbgrn/grn.cgi USERNAME=username PASSWORD=password bundle exec ruby dump.rb
+$ URI=https://example.net/cgi-bin/cbgrn/grn.cgi?WSDL USERNAME=username PASSWORD=password bundle exec ruby dump.rb
 ```
 
 Result:
@@ -143,7 +143,7 @@ $ cat orgs.json | head
 ### Test
 
 ```bash
-export URI=https://example.net/cgi-bin/cbgrn/grn.cgi
+export URI=https://example.net/cgi-bin/cbgrn/grn.cgi?WSDL
 export USERNAME=username
 export PASSWORD=password
 ```
