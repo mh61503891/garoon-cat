@@ -48,7 +48,7 @@ garoon.service(:util).login({
   password: ENV['PASSWORD']
 })
 garoon.service(:base).get_user_versions()
-garoon.service(:util).logout
+garoon.service(:util).logout()
 ```
 
 Example code 3: Dump information of organizations and users
