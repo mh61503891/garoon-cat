@@ -1,5 +1,7 @@
 # Garoon Cat: A ruby interface to the Garoon API
 
+[![Gem Version](https://badge.fury.io/rb/garoon-cat.svg)](https://badge.fury.io/rb/garoon-cat)
+
 ## Usage
 
 Add this line to your application's Gemfile:
