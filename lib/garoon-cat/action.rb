@@ -67,8 +67,8 @@ class GaroonCat::Action
         action: @service.name.sub(/Service$/, @key.to_s.camelize),
         security: {
           username_token: {
-            username: @service.client.security[:username],
-            password: @service.client.security[:password]
+            username: @service.client.username,
+            password: @service.client.password
           }
         },
         timestamp: {

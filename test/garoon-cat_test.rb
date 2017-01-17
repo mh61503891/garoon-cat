@@ -4,10 +4,8 @@ class GaroonCat::Test < Minitest::Test
 
   @@garoon = GaroonCat.setup({
     uri: ENV['URI'],
-    security: {
-      username: ENV['USERNAME'],
-      password: ENV['PASSWORD']
-    }
+    username: ENV['USERNAME'],
+    password: ENV['PASSWORD']
   })
 
   def test_setup

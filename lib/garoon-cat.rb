@@ -14,10 +14,11 @@ class GaroonCat
   attr_reader :services
 
   # @param uri [URI, String] URI to WSDL
-  # @param security [Hash] WS-Security
+  # @param username [String] a username for WS-Security
+  # @param password [String] a password for WS-Security
   # @return [GaroonCat]
-  def self.setup(uri:, security:{username:nil, password:nil})
-    client = GaroonCat::Client.new(security:security)
+  def self.setup(uri:, username:nil, password:nil)
+    client = GaroonCat::Client.new(username:username, password:password)
     uri = uri.kind_of?(URI) ? uri : URI.parse(uri.to_s)
     services = {}
     doc = REXML::Document.new(client.get(uri))
