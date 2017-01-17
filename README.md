@@ -1,7 +1,4 @@
-# Garoon Cat
-
-* This is a gem for Garoon API.
-* This gem is **under construction now**.
+# Garoon Cat: A ruby interface to the Garoon API
 
 ## Usage
 
@@ -17,47 +14,48 @@ And then execute:
 bundle install
 ```
 
-Create sample.rb:
+Example Code 1: WS-Security
 
 ```ruby
 require 'garoon-cat'
-
-params = {
-  endpoint:ENV['ENDPOINT'],
-  username:ENV['USERNAME'],
-  password:ENV['PASSWORD']
-}
-
-base = GaroonCat::Service.new(params.merge({prefix:'cbpapi', name:'base' }))
-p base.get_application_status()
+garoon = GaroonCat.setup({
+  uri: ENV['URI'],
+  username: ENV['USERNAME'],
+  password: ENV['PASSWORD']
+})
+garoon.service(:base).get_user_versions()
 ```
 
-Run sample.rb:
+Example Code 2: Cookie
 
-```bash
-ENDPOINT=https://example.net/cgi-bin/cbgrn/grn.cgi USERNAME=username PASSWORD=password bundle exec ruby sample.rb
+```ruby
+require 'garoon-cat'
+garoon = GaroonCat.setup(uri:ENV['URI'])
+garoon.service(:util).login({
+  login_name: ENV['USERNAME'],
+  password: ENV['PASSWORD']
+})
+garoon.service(:base).get_user_versions()
+garoon.service(:util).logout
 ```
 
-Output:
-
-> {"application"=>[{"code"=>"portal", "status"=>"active"}, {"code"=>"space", "status"=>"deactive"}, {"code"=>"link", "status"=>"active"}, {"code"=>"schedule", "status"=>"active"}, {"code"=>"message", "status"=>"deactive"}, {"code"=>"bulletin", "status"=>"active"}, {"code"=>"cabinet", "status"=>"active"}, {"code"=>"memo", "status"=>"deactive"}, {"code"=>"phonemessage", "status"=>"deactive"}, {"code"=>"timecard", "status"=>"deactive"}, {"code"=>"todo", "status"=>"active"}, {"code"=>"address", "status"=>"deactive"}, {"code"=>"mail", "status"=>"deactive"}, {"code"=>"workflow", "status"=>"active"}, {"code"=>"report", "status"=>"active"}, {"code"=>"cbwebsrv", "status"=>"deactive"}, {"code"=>"rss", "status"=>"deactive"}, {"code"=>"cbdnet", "status"=>"deactive"}, {"code"=>"presence", "status"=>"deactive"}, {"code"=>"star", "status"=>"deactive"}, {"code"=>"notification", "status"=>"deactive"}, {"code"=>"cellular", "status"=>"deactive"}, {"code"=>"kunai", "status"=>"active"}, {"code"=>"favour", "status"=>"deactive"}, {"code"=>"dezielink", "status"=>"deactive"}]}
-
-## Example: dump information of organizations and users
+Example code 3: Dump information of organizations and users
 
 ```ruby
 require 'garoon-cat'
 require 'json'
 
-params = {
-  endpoint:ENV['ENDPOINT'],
-  username:ENV['USERNAME'],
-  password:ENV['PASSWORD']
-}
-
-@base = GaroonCat::Service.new(params.merge({prefix:'cbpapi', name:'base' }))
+garoon = GaroonCat.setup({
+  uri: ENV['URI'],
+  username: ENV['USERNAME'],
+  password: ENV['PASSWORD']
+})
+base = garoon.service(:base)
 
 # dump organization_versions
-File.open('organization_versions.json', 'wb'){ |io| io.write(JSON.pretty_generate(@base.get_organization_versions())) }
+File.open('organization_versions.json', 'wb'){ |io| 
+  io.write(JSON.pretty_generate(base.get_organization_versions()))
+}
 
 # dump organizations
 organization_ids = JSON.parse(File.read('organization_versions.json'))['organization_item'].map{ |e| e['id'] }
@@ -69,7 +67,35 @@ File.open('user_versions.json', 'wb'){ |io| io.write(JSON.pretty_generate(@base.
 # dump users
 user_ids = JSON.parse(File.read('user_versions.json'))['user_item'].map{ |e| e['id'] }
 File.open('users.json', 'wb'){ |io| io.write(JSON.pretty_generate(@base.get_users_by_id(user_id:user_ids))) }
+
+
+
 ```
+
+
+Execute:
+
+```bash
+URI=https://example.net/cgi-bin/cbgrn/grn.cgi USERNAME=username PASSWORD=password bundle exec ruby scripts.rb
+```
+
+
+## Development
+
+### Test
+
+```bash
+$ bundle exec rake test
+```
+
+```bash
+$ bundle exec ruby -Itest test/garoon-cat_test.rb
+```
+
+```bash
+$ bundle exec guard
+```
+
 
 ## License
 
