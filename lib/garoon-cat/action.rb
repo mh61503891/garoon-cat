@@ -54,6 +54,9 @@ class GaroonCat::Action
   # @return [Object] return values of this action
   def execute(*args)
     request = GaroonCat::Request.new(default_params.merge({
+      body:{
+        parameters: args[0][0]
+      }
     }))
     request_body = request.to_s
     response_body = @service.client.post(@service.uri, request_body)
