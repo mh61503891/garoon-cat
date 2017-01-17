@@ -1,5 +1,8 @@
 require 'test_helper'
 
 class GaroonCat::ResponseTest < Minitest::Test
-  # TODO
+
+  def test_new
+  end
+
 end
