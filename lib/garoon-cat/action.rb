@@ -15,8 +15,9 @@ class GaroonCat::Action
     }
     require(class_path(segments))
     class_name(segments).constantize.new(service:service, key:key)
-  rescue LoadError, NameError => e; $stderr.puts e
-    $stderr.puts 'default fallback file -- garoon-cat/action'
+  rescue LoadError => e
+    $stderr.puts e if $DEBUG
+    $stderr.puts 'default fallback file -- garoon-cat/action' if $DEBUG
     self.new(service:service, key:key)
   end
 
