@@ -30,6 +30,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
+  spec.add_dependency 'httpclient'
+  spec.add_dependency 'http-cookie'
   spec.add_dependency 'activesupport'
   spec.add_dependency 'xml-simple'
   spec.add_development_dependency 'bundler', '~> 1.13'
