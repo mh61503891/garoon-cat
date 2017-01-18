@@ -23,10 +23,10 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = '>= 2.3'
 
-  spec.add_dependency 'httpclient'
-  spec.add_dependency 'http-cookie'
+  spec.add_dependency 'httpclient', '~> 2.8.3'
+  spec.add_dependency 'http-cookie', '~> 1.0'
   spec.add_dependency 'activesupport', '~> 4.2'
-  spec.add_dependency 'xml-simple'
+  spec.add_dependency 'xml-simple', '~> 1.1'
   spec.add_development_dependency 'bundler', '~> 1.13'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'minitest', '~> 5.0'
