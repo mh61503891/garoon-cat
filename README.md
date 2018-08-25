@@ -135,7 +135,7 @@ $ cat orgs.json | head
       "version": "0000000000",
       "organization": [
         {
-          "key": "2", 
+          "key": "2",
 ```
 
 ## Development
@@ -149,7 +149,7 @@ export PASSWORD=password
 ```
 
 ```bash
-bundle exec rake test
+$ bundle exec rake test
 ```
 
 ```bash
