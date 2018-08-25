@@ -56,6 +56,10 @@ class GaroonCat::Test < Minitest::Test
     @@users ||= @@garoon.service(:base).get_users_by_id(user_id:organization_ids)
   end
 
+  def events(params)
+    @@events ||= @@garoon.service(:schedule).get_events(params)
+  end
+
   def test_organization_ids
     assert_instance_of(Array, organization_ids)
   end
@@ -70,6 +74,14 @@ class GaroonCat::Test < Minitest::Test
 
   def test_users
     assert_instance_of(Hash, users)
+  end
+
+  def test_events_with_string_parameters
+    assert_instance_of(Hash, events('@start': '2018-08-25T00:00:00', '@end': '2018-08-26T00:00:00'))
+  end
+
+  def test_events_with_symbol_parameters
+    assert_instance_of(Hash, events(:@start => '2018-08-25T00:00:00', :@end => '2018-08-26T00:00:00'))
   end
 
 end

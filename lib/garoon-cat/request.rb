@@ -57,10 +57,10 @@ class GaroonCat::Request
       target.each do |key, v1|
         case v1
         when String
-          parameters.add_element(key.to_s).add_text(v1.to_s)
+          add_attribute_or_element!(parameters, key, v1)
         when Array
           v1.each do |v2|
-            parameters.add_element(key.to_s).add_text(v2.to_s)
+            add_attribute_or_element!(parameters, key, v2)
           end
         end
       end
@@ -97,6 +97,19 @@ class GaroonCat::Request
 
   def to_s
     doc.to_s
+  end
+
+  private
+
+  # @param element [REXML::Element]
+  # @param key [String, Symbol]
+  # @param value [String]
+  def add_attribute_or_element!(element, key, value)
+    if key[0] == "@"
+      element.root.add_attribute(key[1..-1].to_s, value)
+    else
+      element.add_element(key.to_s).add_text(value.to_s)
+    end
   end
 
 end
